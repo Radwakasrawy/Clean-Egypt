@@ -1,0 +1,7 @@
+import 'package:equatable/equatable.dart';import 'package:flutter/material.dart';import '/core/app_export.dart';import '../models/eventlist_item_model.dart';import '../models/favoriteevents_item_model.dart';import 'package:clean_egypt/presentation/favorite_screen/models/favorite_model.dart';part 'favorite_event.dart';part 'favorite_state.dart';/// A bloc that manages the state of a Favorite according to the event that is dispatched to it.
+class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {FavoriteBloc(FavoriteState initialState) : super(initialState) { on<FavoriteInitialEvent>(_onInitialize); }
+
+_onInitialize(FavoriteInitialEvent event, Emitter<FavoriteState> emit, ) async  { emit(state.copyWith(favoriteModelObj: state.favoriteModelObj?.copyWith(eventlistItemList: fillEventlistItemList(), favoriteeventsItemList: fillFavoriteeventsItemList()))); } 
+List<EventlistItemModel> fillEventlistItemList() { return [EventlistItemModel(groupBy: "This Month"), EventlistItemModel(groupBy: "This Month"), EventlistItemModel(groupBy: "Next Month"), EventlistItemModel(groupBy: "Next Month")]; } 
+List<FavoriteeventsItemModel> fillFavoriteeventsItemList() { return [FavoriteeventsItemModel(miamiBeachCommunity: "Miami Beach    Community Clean eg", oceanPkwyWantahg: "1 Ocean Pkwy Wantahg, Ny 11793"), FavoriteeventsItemModel(miamiBeachCommunity: "Miami Beach    Community Clean eg", oceanPkwyWantahg: "1 Ocean Pkwy Wantahg, Ny 11793")]; } 
+ }

@@ -1,0 +1,12 @@
+import '../coupon_screen/widgets/welcomemessage_item_widget.dart';import 'bloc/coupon_bloc.dart';import 'models/coupon_model.dart';import 'models/welcomemessage_item_model.dart';import 'package:clean_egypt/core/app_export.dart';import 'package:clean_egypt/widgets/app_bar/appbar_leading_iconbutton_one.dart';import 'package:clean_egypt/widgets/app_bar/appbar_subtitle_two.dart';import 'package:clean_egypt/widgets/app_bar/custom_app_bar.dart';import 'package:flutter/material.dart';class CouponScreen extends StatelessWidget {const CouponScreen({Key? key}) : super(key: key);
+
+static Widget builder(BuildContext context) { return BlocProvider<CouponBloc>(create: (context) => CouponBloc(CouponState(couponModelObj: CouponModel()))..add(CouponInitialEvent()), child: CouponScreen()); } 
+@override Widget build(BuildContext context) { return SafeArea(child: Scaffold(appBar: _buildAppBar(context), body: Container(width: double.maxFinite, padding: EdgeInsets.symmetric(horizontal: 3.h, vertical: 12.v), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Padding(padding: EdgeInsets.only(left: 17.h), child: Text("msg_best_offers_for".tr, style: CustomTextStyles.titleMediumBlack900Medium)), SizedBox(height: 12.v), _buildWelcomeMessage(context)])))); } 
+/// Section Widget
+PreferredSizeWidget _buildAppBar(BuildContext context) { return CustomAppBar(leadingWidth: 60.h, leading: AppbarLeadingIconbuttonOne(imagePath: ImageConstant.imgArrowLeftGray900, margin: EdgeInsets.only(left: 20.h, top: 8.v, bottom: 8.v), onTap: () {onTapArrowLeft(context);}), centerTitle: true, title: AppbarSubtitleTwo(text: "lbl_coupon".tr)); } 
+/// Section Widget
+Widget _buildWelcomeMessage(BuildContext context) { return Padding(padding: EdgeInsets.only(right: 10.h), child: BlocSelector<CouponBloc, CouponState, CouponModel?>(selector: (state) => state.couponModelObj, builder: (context, couponModelObj) {return ListView.separated(physics: NeverScrollableScrollPhysics(), shrinkWrap: true, separatorBuilder: (context, index) {return SizedBox(height: 1.v);}, itemCount: couponModelObj?.welcomemessageItemList.length ?? 0, itemBuilder: (context, index) {WelcomemessageItemModel model = couponModelObj?.welcomemessageItemList[index] ?? WelcomemessageItemModel(); return WelcomemessageItemWidget(model);});})); } 
+
+/// Navigates to the previous screen.
+onTapArrowLeft(BuildContext context) { NavigatorService.goBack(); } 
+ }

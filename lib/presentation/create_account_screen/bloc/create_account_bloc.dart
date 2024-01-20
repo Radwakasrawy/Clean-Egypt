@@ -1,0 +1,7 @@
+import 'package:equatable/equatable.dart';import 'package:flutter/material.dart';import '/core/app_export.dart';import 'package:clean_egypt/presentation/create_account_screen/models/create_account_model.dart';part 'create_account_event.dart';part 'create_account_state.dart';/// A bloc that manages the state of a CreateAccount according to the event that is dispatched to it.
+class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {CreateAccountBloc(CreateAccountState initialState) : super(initialState) { on<CreateAccountInitialEvent>(_onInitialize); on<ChangePasswordVisibilityEvent>(_changePasswordVisibility); on<ChangeCheckBoxEvent>(_changeCheckBox); }
+
+_changePasswordVisibility(ChangePasswordVisibilityEvent event, Emitter<CreateAccountState> emit, ) { emit(state.copyWith(isShowPassword: event.value)); } 
+_changeCheckBox(ChangeCheckBoxEvent event, Emitter<CreateAccountState> emit, ) { emit(state.copyWith(termsSection: event.value)); } 
+_onInitialize(CreateAccountInitialEvent event, Emitter<CreateAccountState> emit, ) async  { emit(state.copyWith(firstNameController: TextEditingController(), nameController: TextEditingController(), dOBvalueController: TextEditingController(), educationalvalueController: TextEditingController(), emailController: TextEditingController(), passwordController: TextEditingController(), isShowPassword: true, termsSection: false)); } 
+ }

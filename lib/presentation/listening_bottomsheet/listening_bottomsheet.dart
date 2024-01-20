@@ -1,0 +1,7 @@
+import 'bloc/listening_bloc.dart';import 'models/listening_model.dart';import 'package:clean_egypt/core/app_export.dart';import 'package:clean_egypt/widgets/custom_icon_button.dart';import 'package:flutter/material.dart';class ListeningBottomsheet extends StatelessWidget {const ListeningBottomsheet({Key? key}) : super(key: key);
+
+static Widget builder(BuildContext context) { return BlocProvider<ListeningBloc>(create: (context) => ListeningBloc(ListeningState(listeningModelObj: ListeningModel()))..add(ListeningInitialEvent()), child: ListeningBottomsheet()); } 
+@override Widget build(BuildContext context) { return GestureDetector(onTap: () {onTapDeleteAddress(context);}, child: Container(width: double.maxFinite, padding: EdgeInsets.symmetric(horizontal: 160.h, vertical: 20.v), decoration: AppDecoration.fillWhiteA700.copyWith(borderRadius: BorderRadiusStyle.customBorderTL15), child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.end, children: [SizedBox(height: 18.v), Text("lbl_listening".tr, style: CustomTextStyles.titleSmall14), SizedBox(height: 34.v), CustomIconButton(height: 44.adaptSize, width: 44.adaptSize, padding: EdgeInsets.all(10.h), decoration: IconButtonStyleHelper.fillTeal, child: CustomImageView(imagePath: ImageConstant.imgMenuWhiteA70001))]))); } 
+/// Navigates to the mapPinScreen when the action is triggered.
+onTapDeleteAddress(BuildContext context) { NavigatorService.pushNamed(AppRoutes.mapPinScreen, ); } 
+ }

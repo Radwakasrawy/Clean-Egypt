@@ -1,0 +1,7 @@
+import 'bloc/uploaded_bloc.dart';import 'models/uploaded_model.dart';import 'package:clean_egypt/core/app_export.dart';import 'package:clean_egypt/widgets/custom_elevated_button.dart';import 'package:flutter/material.dart';class UploadedScreen extends StatelessWidget {const UploadedScreen({Key? key}) : super(key: key);
+
+static Widget builder(BuildContext context) { return BlocProvider<UploadedBloc>(create: (context) => UploadedBloc(UploadedState(uploadedModelObj: UploadedModel()))..add(UploadedInitialEvent()), child: UploadedScreen()); } 
+@override Widget build(BuildContext context) { return BlocBuilder<UploadedBloc, UploadedState>(builder: (context, state) {return SafeArea(child: Scaffold(body: Container(width: double.maxFinite, padding: EdgeInsets.symmetric(horizontal: 21.h), child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [SizedBox(height: 4.v), CustomImageView(imagePath: ImageConstant.imgVector, height: 114.adaptSize, width: 114.adaptSize), SizedBox(height: 37.v), Text("msg_congratulations".tr, style: theme.textTheme.displaySmall), SizedBox(height: 17.v), Text("msg_your_order_is_successful".tr, style: CustomTextStyles.bodyMediumGray500), SizedBox(height: 78.v), CustomElevatedButton(text: "lbl_back_to_home".tr, margin: EdgeInsets.only(left: 9.h), onPressed: () {onTapBackToHome(context);})]))));}); } 
+/// Navigates to the forgotPasswordSuccessfulScreen when the action is triggered.
+onTapBackToHome(BuildContext context) { NavigatorService.pushNamed(AppRoutes.forgotPasswordSuccessfulScreen, ); } 
+ }

@@ -1,0 +1,7 @@
+import 'package:equatable/equatable.dart';import 'package:flutter/material.dart';import '/core/app_export.dart';import 'package:clean_egypt/presentation/update_profile_screen/models/update_profile_model.dart';part 'update_profile_event.dart';part 'update_profile_state.dart';/// A bloc that manages the state of a UpdateProfile according to the event that is dispatched to it.
+class UpdateProfileBloc extends Bloc<UpdateProfileEvent, UpdateProfileState> {UpdateProfileBloc(UpdateProfileState initialState) : super(initialState) { on<UpdateProfileInitialEvent>(_onInitialize); on<ChangeDropDownEvent>(_changeDropDown); }
+
+_changeDropDown(ChangeDropDownEvent event, Emitter<UpdateProfileState> emit, ) { emit(state.copyWith(selectedDropDownValue: event.value)); } 
+List<SelectionPopupModel> fillDropdownItemList() { return [SelectionPopupModel(id: 1, title: "Item One", isSelected: true), SelectionPopupModel(id: 2, title: "Item Two"), SelectionPopupModel(id: 3, title: "Item Three")]; } 
+_onInitialize(UpdateProfileInitialEvent event, Emitter<UpdateProfileState> emit, ) async  { emit(state.copyWith(nameController: TextEditingController(), phoneController: TextEditingController(), emailController: TextEditingController(), dOBvalueController: TextEditingController())); emit(state.copyWith(updateProfileModelObj: state.updateProfileModelObj?.copyWith(dropdownItemList: fillDropdownItemList()))); } 
+ }

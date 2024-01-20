@@ -1,0 +1,7 @@
+import 'package:equatable/equatable.dart';import 'package:flutter/material.dart';import '/core/app_export.dart';import '../models/eventcardlist_item_model.dart';import 'package:clean_egypt/presentation/event_page/models/event_model.dart';part 'event_event.dart';part 'event_state.dart';/// A bloc that manages the state of a Event according to the event that is dispatched to it.
+class EventBloc extends Bloc<EventEvent, EventState> {EventBloc(EventState initialState) : super(initialState) { on<EventInitialEvent>(_onInitialize); on<ChangeCheckBoxEvent>(_changeCheckBox); }
+
+_changeCheckBox(ChangeCheckBoxEvent event, Emitter<EventState> emit, ) { emit(state.copyWith(februaryth: event.value)); } 
+List<EventcardlistItemModel> fillEventcardlistItemList() { return [EventcardlistItemModel(image: ImageConstant.imgImage, title: "Miami Beach Cleanup", dateText: "February, 14th 2023", seeMoreText: "See Event Details", progressText: "75%", spotsLeftText: "25 spots left"), EventcardlistItemModel(image: ImageConstant.imgImage2), EventcardlistItemModel(image: ImageConstant.imgImage3, progressText: "31%", spotsLeftText: "14 spots left")]; } 
+_onInitialize(EventInitialEvent event, Emitter<EventState> emit, ) async  { emit(state.copyWith(searchController: TextEditingController(), februaryth: false)); emit(state.copyWith(eventModelObj: state.eventModelObj?.copyWith(eventcardlistItemList: fillEventcardlistItemList()))); } 
+ }

@@ -1,0 +1,9 @@
+import 'bloc/logout_bloc.dart';import 'models/logout_model.dart';import 'package:clean_egypt/core/app_export.dart';import 'package:clean_egypt/widgets/custom_outlined_button.dart';import 'package:flutter/material.dart';class LogoutBottomsheet extends StatelessWidget {const LogoutBottomsheet({Key? key}) : super(key: key);
+
+static Widget builder(BuildContext context) { return BlocProvider<LogoutBloc>(create: (context) => LogoutBloc(LogoutState(logoutModelObj: LogoutModel()))..add(LogoutInitialEvent()), child: LogoutBottomsheet()); } 
+@override Widget build(BuildContext context) { return Container(width: double.maxFinite, padding: EdgeInsets.symmetric(horizontal: 17.h, vertical: 51.v), decoration: AppDecoration.fillWhiteA.copyWith(borderRadius: BorderRadiusStyle.roundedBorder20), child: Column(mainAxisSize: MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [Text("lbl_logout2".tr, style: CustomTextStyles.titleMediumBlack900), SizedBox(height: 15.v), Divider(indent: 20.h, endIndent: 10.h), SizedBox(height: 20.v), Text("msg_are_you_sure_want".tr, style: CustomTextStyles.titleMediumBlack900), SizedBox(height: 17.v), Align(alignment: Alignment.centerRight, child: Padding(padding: EdgeInsets.only(left: 27.h), child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [CustomOutlinedButton(height: 50.v, width: 159.h, text: "lbl_cancel".tr, buttonStyle: CustomButtonStyles.outlinePrimary, onPressed: () {onTapCancel(context);}), CustomOutlinedButton(height: 50.v, width: 159.h, text: "lbl_yes_logout".tr, margin: EdgeInsets.only(left: 11.h), onPressed: () {onTapYesLogout(context);})])))])); } 
+/// Navigates to the profileScreen when the action is triggered.
+onTapCancel(BuildContext context) { NavigatorService.pushNamed(AppRoutes.profileScreen, ); } 
+/// Navigates to the logInScreen when the action is triggered.
+onTapYesLogout(BuildContext context) { NavigatorService.pushNamed(AppRoutes.logInScreen, ); } 
+ }
